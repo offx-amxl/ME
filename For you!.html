@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#fff0f5" />
+<title>For My Future Doctor 💗</title>
+<style>
+  :root { --pink:#ff5f9e; --deep:#c2185b; --cream:#fff8f3; --ink:#57283f; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; min-height:100%; }
+  body {
+    min-height:100vh; overflow-x:hidden; color:var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    background: radial-gradient(circle at 20% 15%, #fff 0, transparent 30%),
+                linear-gradient(135deg,#ffe1ec,#fff4ef 48%,#f9d9f0);
+  }
+  .glow { position:fixed; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 45%, #fff8 0, transparent 55%); }
+  .floaties span { position:fixed; bottom:-50px; opacity:0; z-index:0; animation:floatUp linear infinite; pointer-events:none; }
+  @keyframes floatUp { 0%{transform:translateY(0) rotate(0);opacity:0} 10%{opacity:.8} 90%{opacity:.65} 100%{transform:translateY(-115vh) rotate(35deg);opacity:0} }
+  .screen { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px; position:relative; z-index:1; }
+  .intro { text-align:center; width:min(100%,520px); animation:arrive 1s both; }
+  @keyframes arrive { from{opacity:0;transform:translateY(24px) scale(.96)} to{opacity:1;transform:none} }
+  .eyebrow { text-transform:uppercase; letter-spacing:.22em; font:700 11px/1.4 Arial,sans-serif; color:#b94b7d; }
+  h1 { font-size:clamp(2.2rem,8vw,4rem); line-height:1.02; margin:15px 0 12px; color:var(--deep); }
+  .intro p { font:15px/1.7 Arial,sans-serif; color:#86546d; }
+  .envelope-wrap { width:min(310px,78vw); height:210px; margin:34px auto 20px; position:relative; perspective:900px; filter:drop-shadow(0 18px 18px #b63d7026); }
+  .envelope { position:absolute; inset:25px 0 0; background:#ffb8d2; border-radius:10px; overflow:visible; }
+  .envelope:before { content:""; position:absolute; inset:0; background:linear-gradient(145deg,#ffd4e3,#ff8fba); clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%); z-index:3; border-radius:10px; }
+  .flap { position:absolute; top:0; left:0; width:100%; height:60%; background:#ff9fc3; clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:top; z-index:4; transition:transform .9s cubic-bezier(.2,.75,.2,1); }
+  .letter-peek { position:absolute; left:9%; width:82%; height:80%; top:-3%; background:#fffaf5; border-radius:7px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; transition:transform 1s .35s; z-index:2; color:#d33d7b; }
+  .letter-peek span:first-child { font-size:34px; }
+  .seal { position:absolute; z-index:5; left:50%; top:49%; transform:translate(-50%,-50%); width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#c2185b;color:white;font-size:23px;box-shadow:0 5px 12px #9d174b44;transition:opacity .3s; }
+  .open .flap { transform:rotateX(180deg); z-index:1; }
+  .open .letter-peek { transform:translateY(-72px); }
+  .open .seal { opacity:0; }
+  .btn { border:0; border-radius:999px; padding:15px 25px; color:white; background:linear-gradient(135deg,#ff6da5,#d82e77); box-shadow:0 10px 25px #d82e7733; font:700 14px Arial,sans-serif; cursor:pointer; transition:transform .2s,box-shadow .2s; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 14px 28px #d82e7744; }
+  .hint { font:12px Arial,sans-serif!important; opacity:.8; margin-top:14px; }
+  .letter-screen { display:none; padding:32px 16px 60px; }
+  .letter-screen.visible { display:flex; }
+  .paper { width:min(720px,100%); position:relative; padding:clamp(24px,6vw,54px); background:linear-gradient(135deg,#fffefa,#fff8f1); border:1px solid #f4d9e4; border-radius:5px; box-shadow:0 25px 70px #a6386720; animation:paperIn .9s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes paperIn { from{opacity:0;transform:translateY(45px) scale(.96)} to{opacity:1;transform:none} }
+  .paper:before { content:""; position:absolute; inset:10px; border:1px solid #f1c4d7; pointer-events:none; }
+  .top-icon { font-size:35px; text-align:center; }
+  .paper h2 { text-align:center; color:var(--deep); font-size:clamp(1.8rem,6vw,3rem); line-height:1.1; margin:12px 0 8px; }
+  .subtitle { text-align:center; font:700 10px Arial,sans-serif; text-transform:uppercase; letter-spacing:.2em; color:#ba6b8b; margin-bottom:30px; }
+  .paper p { font-size:clamp(1rem,2.8vw,1.12rem); line-height:1.85; margin:0 0 18px; }
+  .highlight { color:#c2185b; font-weight:bold; }
+  .signature { text-align:right; margin-top:28px!important; font-style:italic; }
+  .signature strong { display:block; color:#c2185b; font-size:1.35rem; margin-top:5px; }
+  .footer { text-align:center; font:12px Arial,sans-serif; color:#b16a89; margin-top:25px; }
+  .heart { display:inline-block; animation:heartbeat 1.3s infinite; transform-origin:center; }
+  @keyframes heartbeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.22)} 30%{transform:scale(1)} 45%{transform:scale(1.15)} }
+  .confetti { position:fixed; width:8px;height:12px;top:-20px;z-index:10;pointer-events:none;animation:fall 3.4s linear forwards; }
+  @keyframes fall { to{transform:translateY(110vh) rotate(720deg);opacity:.1} }
+  .replay { display:block; margin:28px auto 0; background:#fff; color:#c2185b; border:1px solid #f2bfd4; box-shadow:none; }
+  @media (prefers-reduced-motion: reduce) { *,*:before,*:after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="floaties" aria-hidden="true" id="floaties"></div>
+
+<main>
+  <section class="screen" id="introScreen">
+    <div class="intro">
+      <div class="eyebrow">A little surprise, made with love</div>
+      <h1>For my<br>Future Doctor 💗</h1>
+      <p>Someone very special has something to celebrate.<br>Tap the envelope, ponneeh… 🥹</p>
+      <div class="envelope-wrap" id="envelopeWrap" aria-hidden="true">
+        <div class="envelope">
+          <div class="letter-peek"><span>🦷</span><b>For Ammu</b><small>Open your little surprise</small></div>
+          <div class="flap"></div>
+          <div class="seal">♥</div>
+        </div>
+      </div>
+      <button class="btn" id="openBtn">OPEN YOUR LETTER 💌</button>
+      <p class="hint">P.S. This letter comes with unlimited hugs 🫂</p>
+    </div>
+  </section>
+
+  <section class="screen letter-screen" id="letterScreen">
+    <article class="paper">
+      <div class="top-icon">🦷 🎓 💗</div>
+      <h2>YOU DID IT, AMMU!</h2>
+      <div class="subtitle">Congratulations on passing your 2nd Year BDS</div>
+      <p><span class="highlight">CONGRATULATIONS MY LOVE 🥹❤️‍🩹🦷🎓</span></p>
+      <p>Ente kutty pass aayallooo 😭❤️ I'm sooo sooo proud of you ponneehh ❤️ I know this journey wasn't always easy, but you did it,🥹💗</p>
+      <p>Nee oru dentist aavunna dreamilek oru step koodi aduthuu.. One day njan ente doctor ne orthu ettavum proud aayi nilkkum 🥹❤️</p>
+      <p>Iniyum kure achievements undaavanam, kure dreams achieve cheyyanam, and njan ella stage ilum ninte koode undaavum 🫂❤️‍🩹</p>
+      <p><span class="highlight">CONGRATULATIONS, MY FUTURE DOCTOR NIKHITHAAA 😭💗🦷👩🏻‍⚕️</span></p>
+      <p><span class="highlight">LOVE YOU SOOO MUCHH ❤️‍🔥💋🫂</span></p>
+      <p class="signature">Always yours…<strong>Your Kichu <span class="heart">❤️</span></strong></p>
+      <div class="footer">One proud boyfriend. One future dentist. A whole lot of love. 💌</div>
+      <button class="btn replay" id="replayBtn">WATCH THE OPENING AGAIN ↻</button>
+    </article>
+  </section>
+</main>
+
+<script>
+  const floaties = document.getElementById('floaties');
+  const symbols = ['♡','♥','✦','✨','🌸'];
+  for (let i=0;i<20;i++) {
+    const s=document.createElement('span');
+    s.textContent=symbols[i%symbols.length];
+    s.style.left=(Math.random()*100)+'%';
+    s.style.fontSize=(12+Math.random()*19)+'px';
+    s.style.animationDuration=(9+Math.random()*12)+'s';
+    s.style.animationDelay=(-Math.random()*18)+'s';
+    s.style.color=['#e65c96','#d8a1bd','#f0a7bf'][i%3];
+    floaties.appendChild(s);
+  }
+  const introScreen=document.getElementById('introScreen');
+  const letterScreen=document.getElementById('letterScreen');
+  const envelopeWrap=document.getElementById('envelopeWrap');
+  let opened=false;
+  function confettiBurst() {
+    const colors=['#ff5f9e','#f7c85b','#b28ce5','#77c9b4','#ff9f80'];
+    for(let i=0;i<75;i++){
+      const c=document.createElement('i');
+      c.className='confetti';
+      c.style.left=Math.random()*100+'vw';
+      c.style.background=colors[Math.floor(Math.random()*colors.length)];
+      c.style.borderRadius=Math.random()>.5?'50%':'2px';
+      c.style.animationDelay=(Math.random()*.9)+'s';
+      c.style.animationDuration=(2.5+Math.random()*2)+'s';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),5500);
+    }
+  }
+  function openLetter(){
+    if(opened) return;
+    opened=true;
+    envelopeWrap.classList.add('open');
+    document.getElementById('openBtn').textContent='OPENING WITH LOVE… 💗';
+    confettiBurst();
+    setTimeout(()=>{
+      introScreen.style.display='none';
+      letterScreen.classList.add('visible');
+      window.scrollTo({top:0,behavior:'smooth'});
+      confettiBurst();
+    },1250);
+  }
+  document.getElementById('openBtn').addEventListener('click',openLetter);
+  document.getElementById('replayBtn').addEventListener('click',()=>{
+    opened=false;
+    letterScreen.classList.remove('visible');
+    introScreen.style.display='flex';
+    envelopeWrap.classList.remove('open');
+    document.getElementById('openBtn').textContent='OPEN YOUR LETTER 💌';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
